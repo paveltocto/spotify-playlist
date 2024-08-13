@@ -40,6 +40,7 @@ export default function Home() {
           }
         );
         const res = await response.json();
+        console.log(res.items, "iteemm")
         setPlaylists(res.items);
         setHasMorePlaylists(!!res.next);
       } catch {
@@ -105,7 +106,7 @@ export default function Home() {
             </p>
           </div>
 
-          {playlists && playlists.length > 0 && (
+          {playlists.length > 0 && (
             <section className="flex flex-col gap-y-7 items-center mx-8 p-8 rounded-[2rem] border-4 border-solid border-white">
               <h2 className="text-xl mb-4 text-gray-200">My Playlists</h2>
               <div className="flex flex-wrap gap-y-12 gap-x-14 justify-center">
@@ -122,7 +123,7 @@ export default function Home() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={
-                        playlist.images.length > 0
+                        playlist.images && playlist.images.length > 0
                           ? playlist.images[0].url
                           : 'https://spotiy-playlist-retriever-experimental.vercel.app/_next/static/media/user_img.6db01878.svg'
                       }
