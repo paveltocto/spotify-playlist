@@ -40,7 +40,6 @@ export default function Home() {
           }
         );
         const res = await response.json();
-        console.log(res.items, "iteemm")
         setPlaylists(res.items);
         setHasMorePlaylists(!!res.next);
       } catch {
