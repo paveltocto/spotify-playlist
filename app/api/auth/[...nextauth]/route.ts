@@ -27,8 +27,6 @@ const options: NextAuthOptions = {
   },
 };
 
-console.log(process.env, "process.env")
-
 const handler = NextAuth(options);
 
 export { handler as GET, handler as POST };
