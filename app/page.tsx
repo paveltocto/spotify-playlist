@@ -43,6 +43,7 @@ export default function Home() {
         setPlaylists(res.items);
         setHasMorePlaylists(!!res.next);
       } catch {
+        console.log("errro")
         signOut();
       } finally {
         setLoading(false);
@@ -105,7 +106,7 @@ export default function Home() {
             </p>
           </div>
 
-          {playlists.length > 0 && (
+          {playlists && playlists.length > 0 && (
             <section className="flex flex-col gap-y-7 items-center mx-8 p-8 rounded-[2rem] border-4 border-solid border-white">
               <h2 className="text-xl mb-4 text-gray-200">My Playlists</h2>
               <div className="flex flex-wrap gap-y-12 gap-x-14 justify-center">
