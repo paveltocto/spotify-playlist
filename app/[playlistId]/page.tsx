@@ -56,10 +56,15 @@ export default function Playlist() {
               },
             }
           );
+
+          if(response.status === 401){
+            throw new Error('Not authorized');
+          }
+          console.log(response);
           const res = await response.json();
           setPlaylist(res);
         } catch {
-          //
+          console.log("errroro")
         } finally {
           setLoading(false);
         }
@@ -94,6 +99,10 @@ export default function Playlist() {
     if (loading) {
       return <h1 className="text-center mt-5">Loading...</h1>;
     } else
+      if(!playlist){
+        return <UserNotLogged />;
+      }
+
       return (
         <>
           {playlist && (
@@ -108,7 +117,7 @@ export default function Playlist() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={
-                      playlist.images.length > 0
+                      playlist.images && playlist.images.length > 0
                         ? playlist.images[0].url
                         : 'https://spotiy-playlist-retriever-experimental.vercel.app/_next/static/media/user_img.6db01878.svg'
                     }
